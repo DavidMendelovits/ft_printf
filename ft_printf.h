@@ -25,4 +25,7 @@ struct flagHandler
 }
 typedef struct flagHandler flag_handler;
 
-
+int     parser(const char *format, flag_handler flagger[], va_list arg_list);
+int		ft_printf(const char *format, ...);
+int     print_char(va_list arg_list);
+int		print_str(va_list arg_list);
