@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include "libft/libft.h"
 
 //try casting va_arg to char instead of int
 int     print_char(va_list arg_list)
@@ -40,9 +41,10 @@ int     print_int(va_list arg_list)
 //maybe just use putnbr
 int     print_number(va_list arg_list)
 {
-    int     n;
-    int     div;
-    int     len;
+    int             n;
+    int             div;
+    int             len;
+    unsigned int    num;
 
     n = va_arg(arg_list, int);
     div = 1;

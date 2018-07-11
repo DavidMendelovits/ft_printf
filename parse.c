@@ -1,13 +1,13 @@
 #include "ft_printf.h"
-
-int     parser(const char *format, flag_handler flagger[], va_list arg_list)
+#include "libft/libft.h"
+int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list)
 {
     int     i;
     int     j;
     int     r_val;
     int     printed_chars;
 
-    printed _chars = 0;
+    printed_chars = 0;
     i = -1;
     while (format[++i])
     {
@@ -15,8 +15,7 @@ int     parser(const char *format, flag_handler flagger[], va_list arg_list)
         {
             j = -1;
             while (flagger[++j].op)
-            {int     parser(const char *format, flag_handler flagger[], va_list arg_list)
-
+            {
                 if (format[i + 1] == flagger[j].op[0])
                 {
                     r_val = flagger[j].f(arg_list);

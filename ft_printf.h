@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF
 # define FT_PRINTF
 
-#include <stdarg>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -22,10 +22,18 @@ struct flagHandler
 {
 	char	*op;
 	int		(*f)(va_list);
-}
+};
 typedef struct flagHandler flag_handler;
 
-int     parser(const char *format, flag_handler flagger[], va_list arg_list);
+int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list);
 int		ft_printf(const char *format, ...);
 int     print_char(va_list arg_list);
 int		print_str(va_list arg_list);
+int     print_int(va_list arg_list);
+int     print_uint(va_list arg_list);
+int     print_number(va_list arg_list);
+int     print_percent(__attribute__((unused))va_list arg_list);
+int     ft_rot13(va_list arg_list);
+
+
+# endif

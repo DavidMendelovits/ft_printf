@@ -11,23 +11,27 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft/libft.h"
+
+flag_handler        g_flagger[] = { {"c", print_char}, {"s", print_str},
+    {"%", print_percent}, {"d", print_int}, {"i", print_int},
+    {"R", ft_rot13}, {NULL, NULL}, {"u", print_uint} };
+/*
+    {"b", print_binary}, {"r", print_rev}, {"R", print_rotX},
+    {"u", print_uint}, {"o", print_octal}, {"x", print_hex},
+    {"X", print_HEX}, {NULL, NULL} };
+*/
 
 int		ft_printf(const char *format, ...)
 {
 	int				printed_characters;
-	flag_handler 	flagger[13];
 	va_list			arg_list;
 
 	if (format == NULL)
 		return (-1);
 
-	flagger = { {"c", print_char}, {"s", print_str}, {"%", print_percent},
-				{"d", print_int}, {"i", print_int}, {"b", print_binary},
-				{"r", print_rev}, {"R", print_rot13}, {"u", print_uint},
-				{"o", print_octal}, {"x", print_hex}, {"X", print_HEX},
-				{NULL, NULL} };
 	va_start(arg_list, format);
-	print_characters = begin_parse(format, flagger, arg_list);
+	printed_characters = begin_parse(format, g_flagger, arg_list);
 	va_end(arg_list);
-	return (printed_chars);
+	return (printed_characters);
 }
