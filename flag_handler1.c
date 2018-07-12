@@ -15,7 +15,7 @@ int     print_str(va_list arg_list)
 
     str = va_arg(arg_list, char *);
     if (str == NULL)
-        str == "(null)";
+        str = "(null)";
     i = -1;
     while (str[++i])
         ft_putchar(str[i]);
@@ -44,7 +44,7 @@ int     print_number(va_list arg_list)
     int             n;
     int             div;
     int             len;
-    unsigned int    num;
+    int    num;
 
     n = va_arg(arg_list, int);
     div = 1;

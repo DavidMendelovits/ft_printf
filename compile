@@ -1,1 +1,1 @@
-gcc -g ft_rotX.c  ft_printf.h printf.c parse.c flag_handler1.c print_uint.c main.c libft/libft.a
+gcc -g -Wall -Wextra -Werror ft_rotX.c ft_printf.h printf.c parse.c flag_handler1.c itoabase.c print_uint.c main.c libft/libft.a

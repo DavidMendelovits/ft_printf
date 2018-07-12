@@ -34,6 +34,7 @@ int     print_uint(va_list arg_list);
 int     print_number(va_list arg_list);
 int     print_percent(__attribute__((unused))va_list arg_list);
 int     ft_rot13(va_list arg_list);
+char    *itoabase(long long n, int base);
 
 
 # endif
