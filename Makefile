@@ -1,57 +1,52 @@
 NAME = libftprintf.a
 
-# directories
-OBJ_DIR = obj/
-SRC_DIR = src/
-INC_DIR = includes/
-LIBFT_DIR = libft/
-TEST_DIR = test/
+CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -I includes/
 
-# compiler
-CFLAGS = -Wall -Wextra -Werror
-CFLAGs += -03 -march=native -pipe
-DEBUG = -g
+SRC_FILES = flag_handler1.c \
+			ft_rot13.c \
+			parse.c \
+			printf.c \
+			print_uint.c \
+			print_pointer.c
 
-# src - obj files
-SRCS = flag_handler1.c flag_handler2.c printf.c parse.c itoabase.c print_uint.c ft_rotX.c
-OBJS = $(SRCS:.c=.o)
-SRC = $(addprefix$(SRC_DIR), $(SRCS))
-OBJ = $(addprefix $(OBJ_DIR), $(OBJS))
-TEST = a.out
+LIB_FILES = ft_putchar.c \
+			ft_putchar_fd.c \
+			ft_isupper.c \
+			ft_islower.c \
+			ft_itoa.c \
+			ft_putstr.c \
+			ft_putstr_fd.c \
+			ft_strrev.c \
+			ft_itoabase.c \
+			ft_nbrlen.c
 
-# lib
-LIBFT = ft
+.PHONY = all clean fclean clean re
 
-INCLUDES = -I $(LIBFT_DIR)/libft.a -I includes/
+SRCS = $(addprefix src/, $(SRC_FILES))
+LIBSRCS = $(addprefix libft/, $(LIB_FILES))
+
+OBJ = $(SRCS:.c=.o)
+LIBOBJ = $(LIBSRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-		@$(MAKE) -C $(LIBFT_DIR)
-		@cp $(LIBFT_DIR)
-		@ar rc $(NAME) $(OBJ)
-		@ranlib $(NAME)
-		@echo "\'ft_printf\' - Library Created"
+$(OBJ): %.o: %.c
+		gcc -c $(CFLAGS) $< -o $@
 
-$(OBJ): $(SRC)
-		@mkdir -p $(OBJDIR)
-		@gcc $(CFLAGS) $(INCLUDES) -c $^
-		@mv -f *.o $(OBJ_DIR)
+$(LIBOBJ): %.o: %.c
+		gcc -c $(CFLAGS) $< -o $@
+
+$(NAME): $(LIBOBJ) $(OBJ)
+		@ar rcs $(NAME) $(OBJ) $(LIBOBJ)
+		@echo "Created libftprintf!!\n"
 
 clean:
-		@make -C $(LIBFT_DIR) clean
-		@/bin/rm -rf $(OBJ_DIR)
-		@echo "\'ft_printf\'" OBJ_DIR removed
+		@rm -rf $(OBJ) $(LIBOBJ)
+		@echo "removed object files"
 
 fclean: clean
-		@make -C $(LIBFT_DIR) fclean
-		@/bin/rm -f $(NAME)
-		@/bin/rm -f $(TEST)
-		@echo "\'ft_printf'\ Executable removed."
-
-test: all
-		gcc $(DEBUG) -w test/*.c -L . -l ftprintf $(INCLUDES) -o $(TEST)
+		@rm -rf $(NAME)
+		@echo "Removed executable file"
 
 re: fclean all
-
-.PHONY: all clean fclean re $(NAME)

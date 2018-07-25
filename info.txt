@@ -18,13 +18,13 @@ long long:
 **%[%][flags][width][(dot)precision][length]specifier
 **
 **Specifiers:
-**	c	int converted to char
+**	c	int converted to char - Completed
 **	C	int converted to wide char
-**	s	string
+**	s	string - Completed
 **	S	wide char string
 **	p	pointer
-**	di	int, D = ld
-**	u	unsigned, U = lu
+**	di	int, D = ld - %i, %d - Completed
+**	u	unsigned, U = lu %u - Completed
 **	o	unsigned in octal, O = lo
 **	x	unsigned in hexadecimal
 **	X	unsigned in hexadecimal uppercase

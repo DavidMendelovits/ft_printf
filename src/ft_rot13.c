@@ -1,4 +1,3 @@
-#include "libft/libft.h"
 #include "ft_printf.h"
 
 

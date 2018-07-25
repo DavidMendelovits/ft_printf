@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include "libft/libft.h"
 
 //try casting va_arg to char instead of int
 int     print_char(va_list arg_list)
