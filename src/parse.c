@@ -1,5 +1,22 @@
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/27 10:46:37 by dmendelo          #+#    #+#             */
+/*   Updated: 2018/07/29 18:04:21 by dmendelo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "ft_printf.h"
+int		get_conversion(int *r_val, flag_handler flagger[], va_list arg_list)
+{
+	int		j = -1;
+
+	while (
+}
 int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list)
 {
     int     i;
@@ -13,6 +30,7 @@ int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list
     {
         if (format[i] == '%')
         {
+			r_val = get_conversion(format, flagger, arg_list, i))
             j = -1;
             while (flagger[++j].op)
             {

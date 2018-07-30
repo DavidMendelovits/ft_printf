@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 23:01:21 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/07/08 09:20:05 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/07/29 17:06:50 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 flag_handler        g_flagger[] = { {"c", print_char}, {"s", print_str},
     {"%", print_percent}, {"d", print_int}, {"i", print_int},
-    {"R", ft_rot13}, {"u", print_uint}, {"p", print_ptr}, {"b", print_binary} {NULL, NULL} };
+    {"R", ft_rot13}, {"u", print_uint}, {"p", print_ptr}, /*{"b", print_binary}*/ {NULL, NULL} };
 /*
     {"b", print_binary}, {"r", print_rev}, {"R", print_rotX},
     {"u", print_uint}, {"o", print_octal}, {"x", print_hex},
