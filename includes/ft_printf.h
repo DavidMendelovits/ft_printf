@@ -17,12 +17,37 @@
 #include "../libft/libft.h"
 
 //op = operator, f = translation function
-struct flagHandler
+typedef struct  s_handler
 {
 	char	*op;
 	int		(*f)(va_list);
-};
-typedef struct flagHandler flag_handler;
+}               t_handler;
+
+typedef struct      s_content
+{
+    int     fd;
+    int     r_val;
+    char    *format;
+    va_list arg_list;
+}                   t_content;
+
+typedef struct      s_todo
+{
+    int         alt_form;
+    int         left_align;
+    int         prepend_space;
+    int         prepend_zero;
+    int         show_sign;
+    char        length[3];
+    char        type;
+    int         len;
+    int         precision;
+    int         width;
+    int         *ret;
+    int         *fd;
+    va_list     *arg_list;
+    raw         data;
+}                   t_todo;
 
 int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list);
 int		ft_printf(const char *format, ...);

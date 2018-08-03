@@ -13,9 +13,17 @@
 #include "ft_printf.h"
 #include "print_pointer.c"
 
-flag_handler        g_flagger[] = { {"c", print_char}, {"s", print_str},
-    {"%", print_percent}, {"d", print_int}, {"i", print_int},
-    {"R", ft_rot13}, {"u", print_uint}, {"p", print_ptr}, /*{"b", print_binary}*/ {NULL, NULL} };
+flag_handler        g_handler[] = 
+{ 
+    {"c", print_char}, 
+    {"s", print_str},
+    {"%", print_percent}, 
+    {"d", print_int}, 
+    {"i", print_int},
+    {"R", ft_rot13}, 
+    {"u", print_uint}, 
+    {"p", print_ptr}, /*{"b", print_binary}*/ {NULL, NULL} 
+};
 /*
     {"b", print_binary}, {"r", print_rev}, {"R", print_rotX},
     {"u", print_uint}, {"o", print_octal}, {"x", print_hex},

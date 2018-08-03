@@ -11,26 +11,44 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-int		get_conversion(int *r_val, flag_handler flagger[], va_list arg_list)
+
+int		get_conversion(const char *format, flag_handler flagger[], va_list arg_list, int i)
 {
 	int		j = -1;
+    int     r_val;
 
-	while (
+    //check for precision
+    //check for width
+    //check for conversion flags (single vs double)
+    //check for padding
+    //
+	while (flagger[++j].op)
+    {
+        if (format[i + 1] == flagger[j].op[0])
+        {
+            if(!r_val = flagger[j].f(arg_list))
+                return (0);
+            break ;
+        }
+    }
+    return (r_val);
 }
+
 int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list)
 {
-    int     i;
-    int     j;
-    int     r_val;
-    int     printed_chars;
+    int         i;
+    t_todo      list;
+    t_content   content;
 
+    content_constructor(&content, arg_list, format);
+    list_constructor(&list, &content)
     printed_chars = 0;
     i = -1;
     while (format[++i])
     {
         if (format[i] == '%')
         {
-			r_val = get_conversion(format, flagger, arg_list, i))
+			r_val = get_conversion(format, flagger, arg_list, i)
             j = -1;
             while (flagger[++j].op)
             {
