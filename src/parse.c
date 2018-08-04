@@ -12,11 +12,23 @@
 
 #include "ft_printf.h"
 
-int		get_conversion(const char *format, flag_handler flagger[], va_list arg_list, int i)
+int		get_conversion(t_todo *list, t_content *content, int *i)
 {
 	int		j = -1;
-    int     r_val;
-
+//i is '%' place
+    while (content->format[++i] && !(spec_check(list, content, i)))
+    {
+        if (flag_check(content->format[i]))
+            apply_flags(&list, content, i);
+        else if (content->format[i == '.'])
+            content->r_val += apply_precision(list, content, i);
+        else if (ft_isdigit(content->format[i]))
+            content->r_val += apply_with(list, content, i);
+        else if (ft_isalpha(content->format[i]))
+            content->r_val += apply_length(list, content, i);
+        else if (content->format[i] =='&')
+            content->r_val += apply_colors(list, content, i);
+    }
     //check for precision
     //check for width
     //check for conversion flags (single vs double)
@@ -48,19 +60,19 @@ int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list
     {
         if (format[i] == '%')
         {
-			r_val = get_conversion(format, flagger, arg_list, i)
-            j = -1;
-            while (flagger[++j].op)
-            {
-                if (format[i + 1] == flagger[j].op[0])
-                {
-                    r_val = flagger[j].f(arg_list);
-                    if (r_val == -1)
-                        return (-1);
-                    printed_chars += r_val;
-                    break ;
-                }
-            }
+			r_val = get_conversion(&list, &content, &i);
+     //       j = -1;
+     //       while (flagger[++j].op)
+     //       {
+     //           if (format[i + 1] == flagger[j].op[0])
+     //           {
+     //               r_val = flagger[j].f(arg_list);
+     //               if (r_val == -1)
+     //                   return (-1);
+     //               printed_chars += r_val;
+     //               break ;
+     //           }
+     //       }
             if (flagger[j].op == NULL && format[i + 1] != ' ')
             {
                 if (format[i + 1] != '\0')
