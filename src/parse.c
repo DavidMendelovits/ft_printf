@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/27 10:46:37 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/03 20:30:38 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/04 10:22:35 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int		get_conversion(t_todo *list, t_content *content, int *i)
     {
         if (flag_check(content->format[i]))
             apply_flags(&list, content, i);
-        else if (content->format[i == '.'])
-            content->r_val += apply_precision(list, content, i);
+        else if (content->format[i] == '.')
+            apply_precision(list, content, i);
         else if (ft_isdigit(content->format[i]))
-            content->r_val += apply_with(list, content, i);
+            apply_width(list, content, i);
         else if (ft_isalpha(content->format[i]))
             content->r_val += apply_length(list, content, i);
-        else if (content->format[i] =='&')
-            content->r_val += apply_colors(list, content, i);
+//        else if (content->format[i] =='&')
+//            content->r_val += apply_colors(list, content, i);
     }
     //check for precision
     //check for width
@@ -46,7 +46,7 @@ int		get_conversion(t_todo *list, t_content *content, int *i)
     return (r_val);
 }
 
-int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list)
+int     begin_parse(const char *format, va_list arg_list)
 {
     int         i;
     t_todo      list;

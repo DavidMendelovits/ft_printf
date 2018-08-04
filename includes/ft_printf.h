@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 22:48:32 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/03 20:30:36 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/04 10:22:56 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct      s_todo
     int         show_sign:1;
     char        length[3];
     char        type;
-    int         len;
+    int         length_cast;
     int         precision;
     int         width;
     int         *ret;

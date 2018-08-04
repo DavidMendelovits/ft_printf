@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flags.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/04 09:04:18 by dmendelo          #+#    #+#             */
+/*   Updated: 2018/08/04 10:22:59 by dmendelo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int     apply_flags(t_todo *list, t_content *content, int i)
@@ -37,19 +49,22 @@ int     is_wildcard(char c)
     //consider reading argument for wildcard and applying it in this function?
 }
 
-int     apply_precision(t_todo *list, t_content *content, int *i)
+void     apply_precision(t_todo *list, t_content *content, int *i)
 {
 	int		tmp;
 	int		p_len;
 
 	tmp = i;
 	p_len = 0;
-	while (!(flag_check(content->format[++tmp]
-            && !(is_wildcard(content->format[tmp])))))
+	while (!(flag_check(content->format[++tmp])
+            && !(is_wildcard(content->format[tmp]))))
 	{
 		if (p_len > 0)
-			list->precision *= (10 * p_len);
+			list->precision *= 10;
 		list->precision	+= ft_atoi(content->format[tmp]);
 		p_len++;
 	}
+	if (p_len == 0)
+		get_wildcard(list->precision, content, &p_len);
+	i += p_len;
 }

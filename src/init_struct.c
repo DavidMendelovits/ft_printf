@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/04 09:04:08 by dmendelo          #+#    #+#             */
+/*   Updated: 2018/08/04 10:22:30 by dmendelo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void    content_constructor(t_content *content, va_list _arg_list, const char *_format)
@@ -20,6 +32,7 @@ void    list_constructor(t_todo *list, t_content *content)
     list->length[2] = '\0';
     list->type = 0;
     list->len = 0;
+	list->width = 0;
 	list->precision = 0;
     list->arg_list = &content->arg_list;
     list->fd = &content->fd;
