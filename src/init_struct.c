@@ -20,7 +20,10 @@ void    list_constructor(t_todo *list, t_content *content)
     list->length[2] = '\0';
     list->type = 0;
     list->len = 0;
+	list->precision = 0;
     list->arg_list = &content->arg_list;
     list->fd = &content->fd;
     list->r_val = &content->fd;
 }
+
+int		store_precision

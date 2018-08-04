@@ -30,5 +30,16 @@ int     flag_check(char c)
 
 int     apply_precision(t_todo *list, t_content *content, int *i)
 {
+	int		tmp;
+	int		p_len;
 
+	tmp = i;
+	p_len = 0;
+	while (!(flag_check(content->format[++tmp])))
+	{
+		if (p_len > 0)
+			list->precision *= (10 * p_len);
+		list->precision	+= ft_atoi(content->format[tmp]);
+		p_len++;
+	}
 }
