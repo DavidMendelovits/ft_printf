@@ -17,7 +17,8 @@ int     apply_flags(t_todo *list, t_content *content, int i)
             list->left_align = 1;
         else if (content->format[tmp] == '+')
             list->show_sign = 1;
-    }   
+    }
+    //return(?)
 }
 
 
@@ -28,6 +29,14 @@ int     flag_check(char c)
     return (0);
 }
 
+int     is_wildcard(char c)
+{
+    if (c == '*' )
+        return (1);
+    return (0);
+    //consider reading argument for wildcard and applying it in this function?
+}
+
 int     apply_precision(t_todo *list, t_content *content, int *i)
 {
 	int		tmp;
@@ -35,7 +44,8 @@ int     apply_precision(t_todo *list, t_content *content, int *i)
 
 	tmp = i;
 	p_len = 0;
-	while (!(flag_check(content->format[++tmp])))
+	while (!(flag_check(content->format[++tmp]
+            && !(is_wildcard(content->format[tmp])))))
 	{
 		if (p_len > 0)
 			list->precision *= (10 * p_len);

@@ -25,5 +25,3 @@ void    list_constructor(t_todo *list, t_content *content)
     list->fd = &content->fd;
     list->r_val = &content->fd;
 }
-
-int		store_precision
