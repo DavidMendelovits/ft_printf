@@ -38,9 +38,9 @@ typedef struct      s_todo
     int         prepend_space:1;
     int         prepend_zero:1;
     int         show_sign:1;
-    char        length[3];
+    char        length_cast[3];
     char        type;
-    int         length_cast;
+    int         len;
     int         precision;
     int         width;
     int         *ret;

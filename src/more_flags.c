@@ -47,6 +47,19 @@ void	apply_length(t_todo *list, t_content *content, int *i)
 	len_len = 0;
 	while (!(flag_check(content->format[++tmp])))
 	{
-		//
+
+        if (!validate_len(content->format[tmp]))
+        {
+            ft_strclr(list->length_cast);
+            break ;
+        }
+        list->length_cast[len_len++] = content->format;
 	}
+}
+
+int     validate_len(char c)
+{
+    if (c == 'l' || c == 'h' || c == 'z' || c == 'j')
+        return (1);
+    return (0);
 }
