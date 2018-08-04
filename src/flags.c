@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:04:18 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/04 10:22:59 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/04 16:01:39 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void     apply_precision(t_todo *list, t_content *content, int *i)
 	tmp = i;
 	p_len = 0;
 	while (!(flag_check(content->format[++tmp])
-            && !(is_wildcard(content->format[tmp]))))
+		&& !(is_wildcard(content->format[tmp]))))
 	{
 		if (p_len > 0)
 			list->precision *= 10;
@@ -67,4 +67,13 @@ void     apply_precision(t_todo *list, t_content *content, int *i)
 	if (p_len == 0)
 		get_wildcard(list->precision, content, &p_len);
 	i += p_len;
+}
+
+int		spec_check(char c)
+{
+	if (c == 'c' || c == 'C' || c == 's' || c == 'S' || c == 'p'
+	|| c == 'd' || c == 'D' || c == 'i' || c == 'u' || c == 'o'
+	|| c == 'O' || c == 'x' || c == 'X' || c == 'b')
+		return (1);
+	return (0);
 }

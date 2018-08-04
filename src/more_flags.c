@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:16:03 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/04 10:22:29 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/04 16:01:42 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	apply_width(t_todo *list, t_content *content, int *i)
 	tmp = i;
 	w_len = 0;
 	while (!(flag_check(content->format[++tmp])
-			&& !(is_wildcard(content->format[tmp]))))
+		&& !(is_wildcard(content->format[tmp]))))
 	{
 		if (w_len > 0)
 			list->width *= 10;
@@ -41,20 +41,27 @@ void	get_wildcard(int *value, t_content *content, int *len)
 void	apply_length(t_todo *list, t_content *content, int *i)
 {
 	int		tmp;
-	int		len_len;
 
 	tmp = i;
-	len_len = 0;
-	while (!(flag_check(content->format[++tmp])))
-	{
-
-        if (!validate_len(content->format[tmp]))
-        {
-            ft_strclr(list->length_cast);
-            break ;
-        }
-        list->length_cast[len_len++] = content->format;
-	}
+	if (content->format[tmp] == 'h' && content->format[tmp + 1] == 'h'
+	&& spec_check(content->format[tmp + 2]))
+		ft_strcpy(list->length_cast, "hh\0");
+	else if (content->format[tmp] == 'h' 
+	&& spec_check(content->format[tmp + 1]))
+		ft_strcpy(list->length_cast, "h\0");
+	else if (content->format[tmp] == 'l' && content->format[tmp + 1] == 'l'
+	&& spec_check(content->format[tmp + 2]))
+		ft_strcpy(list->length_cast, "ll\0");
+	else if (content->format[tmp] == 'l'
+	&& spec_check(content->format[tmp + 1]))
+		ft_strcpy(list->length_cast, "l\0");
+	else if (content->format[tmp] == 'j'
+	&& spec_check(content->format[tmp + 1]))
+		list->length_cast[0] = 'j';
+	else if (content->format[tmp] == 'z'
+	&& spec_check(content->format[tmp]))
+		list->length_cast[0] == 'z';
+	i += ft_strlen(list->length_cast);
 }
 
 int     validate_len(char c)

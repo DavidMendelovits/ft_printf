@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/27 10:46:37 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/04 10:22:35 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/04 16:01:35 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@ int		get_conversion(t_todo *list, t_content *content, int *i)
         else if (ft_isdigit(content->format[i]))
             apply_width(list, content, i);
         else if (ft_isalpha(content->format[i]))
-            content->r_val += apply_length(list, content, i);
+            apply_length(list, content, i);
 //        else if (content->format[i] =='&')
 //            content->r_val += apply_colors(list, content, i);
     }
-    //check for precision
-    //check for width
-    //check for conversion flags (single vs double)
-    //check for padding
-    //
+	
+	
+	
 	while (flagger[++j].op)
     {
         if (format[i + 1] == flagger[j].op[0])
