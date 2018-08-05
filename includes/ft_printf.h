@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 22:48:32 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/04 10:22:56 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/04 20:50:33 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 #include "../libft/libft.h"
 
 //op = operator, f = translation function
+/*
 typedef struct      s_handler
 {
 	char	*op;
 	int		(*f)(va_list);
 }                   t_handler;
-
+*/
 typedef struct      s_content
 {
     int     fd;
@@ -31,8 +32,10 @@ typedef struct      s_content
     va_list arg_list;
 }                   t_content;
 
+
 typedef struct      s_todo
 {
+    va_list     *arg_list;
     int         alt_form:1;
     int         left_align:1;
     int         prepend_space:1;
@@ -43,15 +46,45 @@ typedef struct      s_todo
     int         len;
     int         precision;
     int         width;
-    int         *ret;
+    int         *r_value;
     int         *fd;
-    va_list     *arg_list;
+
 //raw         data;
 }                   t_todo;
 
 //int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list);
 int		ft_printf(const char *format, ...);
+int		begin_parse(const char *format, va_list arg_list);
+void	content_constructor(t_content *content, va_list _arg_list, const char *format);
+void	list_constructor(t_todo *list, t_content *content);
+int		get_conversion(t_todo *list, t_content *content, int *i);
+int		apply_flags(t_todo *list, t_content *content, int *i);
+void	apply_precision(t_todo *list, t_content *content, int *i);
+void	apply_width(t_todo *list, t_content *content, int *i);
+void	*apply_length(t_todo *list, t_content *content, int *i);
+int		flag_check(char c);
+int		is_wildcard(char c);
+void	get_wildcard(char c);
+int		spec_check(char c);
+int		validate_len(char c);
+
+
+
+
+
+
 int     print_char(va_list arg_list);
+
+
+
+
+
+
+
+
+
+
+
 int		print_str(va_list arg_list);
 int     print_int(va_list arg_list);
 int     print_uint(va_list arg_list);
