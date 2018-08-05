@@ -6,13 +6,13 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:04:18 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/04 16:01:39 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/04 20:50:39 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     apply_flags(t_todo *list, t_content *content, int i)
+int     apply_flags(t_todo *list, t_content *content, int *i)
 {
     int     tmp;
 
