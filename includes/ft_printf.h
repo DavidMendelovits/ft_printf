@@ -52,7 +52,6 @@ typedef struct      s_todo
 //raw         data;
 }                   t_todo;
 
-//int     begin_parse(const char *format, flag_handler flagger[], va_list arg_list);
 int		ft_printf(const char *format, ...);
 int		begin_parse(const char *format, va_list arg_list);
 void	content_constructor(t_content *content, va_list _arg_list, const char *format);
@@ -67,24 +66,13 @@ int		is_wildcard(char c);
 void	get_wildcard(char c);
 int		spec_check(char c);
 int		validate_len(char c);
+void    dispatch(t_todo list, t_content *content, int *i);
 
 
 
-
-
+//format these for new parsing engine
 
 int     print_char(va_list arg_list);
-
-
-
-
-
-
-
-
-
-
-
 int		print_str(va_list arg_list);
 int     print_int(va_list arg_list);
 int     print_uint(va_list arg_list);
