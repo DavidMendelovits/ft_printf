@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 22:48:32 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/04 20:50:33 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/05 20:31:16 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,43 @@ typedef struct      s_handler
 */
 typedef struct      s_content
 {
-    int     fd;
-    int     r_val;
-    char    *format;
-    va_list arg_list;
+    int				fd;
+    int				r_val;
+    char			*format;
+    va_list			arg_list;
 }                   t_content;
-
 
 typedef struct      s_todo
 {
-    va_list     *arg_list;
-    int         alt_form:1;
-    int         left_align:1;
-    int         prepend_space:1;
-    int         prepend_zero:1;
-    int         show_sign:1;
-    char        length_cast[3];
-    char        type;
-    int         len;
-    int         precision;
-    int         width;
-    int         *r_value;
-    int         *fd;
-
-//raw         data;
+    va_list     	*arg_list;
+    int				alt_form:1;
+    int         	left_align:1;
+    int         	prepend_space:1;
+    int         	prepend_zero:1;
+    int         	show_sign:1;
+    char        	length_cast[3];
+    char        	spec;
+    int         	len;
+    int         	precision;
+    int         	width;
+    int         	*r_value;
+    int         	*fd;
+	t_argument		*data;
 }                   t_todo;
+
+typedef union
+{
+	char			character;
+	char			*str;
+	intmax_t		num;
+	uintmax_t		u_num;
+	void			*ptr;
+}					t_argument;
 
 int		ft_printf(const char *format, ...);
 int		begin_parse(const char *format, va_list arg_list);
-void	content_constructor(t_content *content, va_list _arg_list, const char *format);
-void	list_constructor(t_todo *list, t_content *content);
+void	init_content(t_content *content, va_list _arg_list, const char *format);
+void	init_list(t_todo *list, t_content *content);
 int		get_conversion(t_todo *list, t_content *content, int *i);
 int		apply_flags(t_todo *list, t_content *content, int *i);
 void	apply_precision(t_todo *list, t_content *content, int *i);

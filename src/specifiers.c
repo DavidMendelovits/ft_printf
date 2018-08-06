@@ -2,6 +2,9 @@
 
 void    dispatch(t_todo *list, t_content *content, int *i)
 {
+	t_argument	arg;
+
+	list->data = &arg;
     if (list->spec == 's' || list->spec == 'S')
         string(list, content, i);
     else if (list->spec == 'd' || list->spec == 'i')
@@ -21,5 +24,4 @@ void    dispatch(t_todo *list, t_content *content, int *i)
     else if (list->spec == 'b')
         binary(list, content, i);
 }
-
 

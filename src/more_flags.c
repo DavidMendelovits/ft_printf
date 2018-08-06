@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:16:03 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/04 20:50:38 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/08/05 20:31:21 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	apply_width(t_todo *list, t_content *content, int *i)
 	tmp = i;
 	w_len = 0;
 	while (!(flag_check(content->format[++tmp])
-		&& !(is_wildcard(content->format[tmp]))))
+		&& !(is_wildcard(content->format[tmp])
+		&& !(content->format[tmp] == '.'))))
 	{
 		if (w_len > 0)
 			list->width *= 10;
