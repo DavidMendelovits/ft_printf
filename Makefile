@@ -3,28 +3,18 @@ NAME = libftprintf.a
 CFLAGS += -Wall -Wextra -Werror
 CFLAGS += -I includes/
 
-SRC_FILES = flag_handler1.c \
-			ft_rot13.c \
+SRC_FILES = string.c \
+			convert_length.c \
+			init_struct.c \
 			parse.c \
+			flags.c \
+			more_flags.c \
 			printf.c \
-			print_uint.c \
-			print_pointer.c
-
-LIB_FILES = ft_putchar.c \
-			ft_putchar_fd.c \
-			ft_isupper.c \
-			ft_islower.c \
-			ft_itoa.c \
-			ft_putstr.c \
-			ft_putstr_fd.c \
-			ft_strrev.c \
-			ft_itoabase.c \
-			ft_nbrlen.c
+			specifiers.c \
 
 .PHONY = all clean fclean clean re
 
 SRCS = $(addprefix src/, $(SRC_FILES))
-LIBSRCS = $(addprefix libft/, $(LIB_FILES))
 
 OBJ = $(SRCS:.c=.o)
 LIBOBJ = $(LIBSRCS:.c=.o)
@@ -34,11 +24,11 @@ all: $(NAME)
 $(OBJ): %.o: %.c
 		gcc -c $(CFLAGS) $< -o $@
 
-$(LIBOBJ): %.o: %.c
 		gcc -c $(CFLAGS) $< -o $@
 
-$(NAME): $(LIBOBJ) $(OBJ)
-		@ar rcs $(NAME) $(OBJ) $(LIBOBJ)
+$(NAME):  $(OBJ)
+		@make -C libft/
+		@ar rcs $(NAME) $(OBJ) $(LIBOBJ) libft/libft.a
 		@echo "Created libftprintf!!\n"
 
 clean:

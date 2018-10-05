@@ -6,34 +6,34 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 16:34:07 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/05 20:31:25 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/05 16:05:14 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	string(t_todo *list, t_content *content, int *i)
+void	string(t_todo *list, t_content *content)
 {
-	int		str;
-
-	str = eval_str(list)
+	WOW();
 	if (list->spec == 's')
 		print_string(list, content);
-	else if (list->spec == 'S')
-		print_wide_string(list, content);
+//	else if (list->spec == 'S')
+//		print_wide_string(list, content);
 }
-/*
-int		eval_str(t_todo *list)
+
+void	character(t_todo *list, t_content *content)
 {
-	if (list->spec == 's')
-		return (1);
-	else if (list->spec == 'S')
-		return (2);
+	WOW();
+	list->data->character = va_arg(*content->arg_list, int);
+	write(1, &list->data->character, 1);
+	content->r_val += 1;
 }
-*/
+
 void	print_string(t_todo *list, t_content *content)
 {
-	list->data->str = va_arg(content->arg_list, char*);
+	WOW();
+	list->data->str = va_arg(*content->arg_list, char*);
+	printf("str: %s\n", list->data->str);
 	list->len = ft_strlen(list->data->str);
 	if (list->left_align)
 	{
@@ -44,16 +44,19 @@ void	print_string(t_todo *list, t_content *content)
 	{
 		print_width(list, content);
 		print_precision(list, content);
-	}	
+	}
+//	write(1, &list->data->str, list->len);
+//	content->r_val += list->len;
 }
 
-void	print_wchar_string(t_todo *list, t_content *content)
-{
-	list->data->
-}
+//void	print_wchar_string(t_todo *list, t_content *content)
+//{
+//	list->data->
+//}
 
 void	print_width(t_todo *list, t_content *content)
 {
+	WOW();
 	int		pad;
 	char	pad_char;
 
@@ -64,17 +67,22 @@ void	print_width(t_todo *list, t_content *content)
 	if (list->precision >= 0 && list->precision < list->len)
 		pad = list->width - list->precision;
 	else
-		pad = list->width - list->precision;
+		pad = list->width - list->len;
+	printf("list->len = %d\n", list->len);
+	printf("list->width = %d\n", list->width);
+	printf("list->precision = %d\n", list->width);
+	printf("padding: %d\n", pad);
 	while (pad > 0)
 	{
-		write(content->fd, pad_char, 1);
+		write(content->fd, &pad_char, 1);
 		pad--;
-		content->rval++;
+		content->r_val++;
 	}
 }
 
 void	print_precision(t_todo *list, t_content *content)
 {
+	WOW();
 	int		_precision;
 
 	if (list->precision != -1 && list->precision < list->len)

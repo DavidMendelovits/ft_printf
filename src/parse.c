@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/27 10:46:37 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/08/05 20:31:30 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/05 16:36:46 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,42 @@
 
 int		get_conversion(t_todo *list, t_content *content, int *i)
 {
-	int		j = -1;
+	WOW();
+//	int		j = -1;
 //i is '%' place
-    while (content->format[++i] && !(spec_check(content->format[i])))
+	*i += 1;
+    while (content->format[(*i)] && !(spec_check(content->format[(*i)])))
     {
-        if (flag_check(content->format[i]))
+		printf("content->format[%d] = %c\n", *i, content->format[*i]);
+        if (flag_check(content->format[*i]))
             apply_flags(list, content, i);
-        else if (content->format[i] == '.')
-            apply_precision(list, content, i);
-        else if (ft_isdigit(content->format[i]))
+        else if (ft_isdigit(content->format[*i]) || content->format[*i] == '*')
             apply_width(list, content, i);
-        else if (ft_isalpha(content->format[i]))
+        else if (content->format[*i] == '.')
+            apply_precision(list, content, i);
+        else if (ft_isalpha(content->format[*i]))
             apply_length(list, content, i);
 //        else if (content->format[i] =='&')
 //            content->r_val += apply_colors(list, content, i);
 //           (error check?)
-    }
-	list->spec == content->format[i];
+    	*i += 1;
+	}
+	printf("content->format[%d] = %c\n", *i, content->format[*i]);
+	list->spec = content->format[*i];
 	dispatch(list, content, i);
 	return (1);
 }
 
 int     begin_parse(const char *format, va_list arg_list)
 {
+	WOW();
     int         i;
     t_todo      list;
     t_content   content;
 
-    init_content(&content, arg_list, format);
-    init_list(&list, &content)
-    printed_chars = 0;
+    init_content(&content, (va_list*)arg_list, format);
+    init_list(&list, &content);
+    content.r_val = 0;
     i = -1;
     while (format[++i])
     {
