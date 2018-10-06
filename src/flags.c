@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:04:18 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 15:54:14 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/05 17:53:43 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,14 @@ void     apply_precision(t_todo *list, t_content *content, int *i)
 		p_len++;
 	}
 	if (p_len == 0)
+	{
 		get_wildcard(&list->precision, content, &p_len);
-	*i += p_len;
+		*i += 1;
+	}
+	else
+	{
+		*i += p_len;
+	}
 }
 
 int		spec_check(char c)

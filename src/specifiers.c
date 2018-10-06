@@ -10,9 +10,9 @@ void    dispatch(t_todo *list, t_content *content, int *i)
 	printf("list->spec: %c\n", list->spec);
     if (list->spec == 's' || list->spec == 'S')
         string(list, content);
- /*   else if (list->spec == 'd' || list->spec == 'i')
-        decimal(list, content, i);
- */   else if (list->spec == 'c' || list->spec == 'C')
+    else if (list->spec == 'd' || list->spec == 'i')
+        decimal(list, content);
+    else if (list->spec == 'c' || list->spec == 'C')
         character(list, content);
 /*    else if (list->spec == '%')
         percent(list, content, i);

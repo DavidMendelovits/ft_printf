@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 16:34:07 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 16:05:14 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/05 17:55:55 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	string(t_todo *list, t_content *content)
 
 void	character(t_todo *list, t_content *content)
 {
-	WOW();
+//	WOW();
 	list->data->character = va_arg(*content->arg_list, int);
 	write(1, &list->data->character, 1);
 	content->r_val += 1;
@@ -31,9 +31,9 @@ void	character(t_todo *list, t_content *content)
 
 void	print_string(t_todo *list, t_content *content)
 {
-	WOW();
+//	WOW();
 	list->data->str = va_arg(*content->arg_list, char*);
-	printf("str: %s\n", list->data->str);
+//	printf("str: %s\n", list->data->str);
 	list->len = ft_strlen(list->data->str);
 	if (list->left_align)
 	{
@@ -64,13 +64,13 @@ void	print_width(t_todo *list, t_content *content)
 		pad_char = '0';
 	else
 		pad_char = ' ';
-	if (list->precision >= 0 && list->precision < list->len)
+	if (list->precision >= 0)
 		pad = list->width - list->precision;
 	else
 		pad = list->width - list->len;
 	printf("list->len = %d\n", list->len);
 	printf("list->width = %d\n", list->width);
-	printf("list->precision = %d\n", list->width);
+	printf("list->precision = %d\n", list->precision);
 	printf("padding: %d\n", pad);
 	while (pad > 0)
 	{
@@ -82,7 +82,7 @@ void	print_width(t_todo *list, t_content *content)
 
 void	print_precision(t_todo *list, t_content *content)
 {
-	WOW();
+//	WOW();
 	int		_precision;
 
 	if (list->precision != -1 && list->precision < list->len)

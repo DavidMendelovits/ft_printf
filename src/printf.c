@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 23:01:21 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 14:55:15 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/05 17:15:41 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int		ft_printf(const char *format, ...)
 {
-	WOW();
+//	WOW();
 	int				printed_characters;
 	va_list			arg_list;
 

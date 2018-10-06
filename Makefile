@@ -11,6 +11,7 @@ SRC_FILES = string.c \
 			more_flags.c \
 			printf.c \
 			specifiers.c \
+			decimal.c \
 
 .PHONY = all clean fclean clean re
 

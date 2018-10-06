@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:04:08 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 14:55:29 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/05 17:15:22 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    init_content(t_content *content, va_list *_arg_list, const char *_format)
 {
-	WOW();
+//	WOW();
     content->fd = 1;
     content->r_val = 0;
     content->format = (char*)_format;
@@ -23,7 +23,7 @@ void    init_content(t_content *content, va_list *_arg_list, const char *_format
 
 void    init_list(t_todo *list, t_content *content)
 {
-	WOW();
+//	WOW();
     list->left_align = 0;
     list->alt_form = 0;
     list->prepend_space = 0;

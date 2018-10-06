@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/27 10:46:37 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 16:36:46 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/05 18:08:27 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int		get_conversion(t_todo *list, t_content *content, int *i)
     while (content->format[(*i)] && !(spec_check(content->format[(*i)])))
     {
 		printf("content->format[%d] = %c\n", *i, content->format[*i]);
-        if (flag_check(content->format[*i]))
+        printf("list->precision: %d\n", list->precision);
+		if (flag_check(content->format[*i]))
             apply_flags(list, content, i);
-        else if (ft_isdigit(content->format[*i]) || content->format[*i] == '*')
+        else if ((ft_isdigit(content->format[*i])  
+			&& content->format[*i - 1] != '.') || content->format[*i] == '*')
             apply_width(list, content, i);
         else if (content->format[*i] == '.')
             apply_precision(list, content, i);
