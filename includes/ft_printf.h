@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 22:48:32 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 18:42:03 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/06 11:01:54 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,27 @@ int		ft_number_len(unsigned long n);
 void	decimal(t_todo *list, t_content *content);
 
 void	unsigned_int(t_todo *list, t_content *content);
+void	conversion(t_todo *list, t_content *content);
+void	unsigned_conversion(t_todo *list, t_content *content);
 
 void	print_zero(t_todo *list, t_content *content);
 
-void	ft_putnbr_base(unsigned long long number, int base);
+void	ft_putnbr_base(unsigned long long number, char *base, int radix);
+void	ft_putint_base(int number, char *base, int radix);
 
 void	pointer(t_todo *list, t_content *content);
+
+void	hex(t_todo *list, t_content *content);
+
+void	binary(t_todo *list, t_content *content);
+
+void	octal(t_todo *list, t_content *content);
+
+int		ft_number_len_base(unsigned long n, int radix);
+
+void	print_wide_string(t_todo *list, t_content *content);
+
+char	*wstring_dup(t_content *content);
 //format these for new parsing engine
 
 /*

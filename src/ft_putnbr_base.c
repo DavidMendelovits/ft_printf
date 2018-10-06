@@ -1,19 +1,33 @@
 #include "libft.h"
 
-#define NUM "0123456789abcdef"
-
-void        ft_putnbr_base(unsigned long long number, int base)
+void        ft_putnbr_base(unsigned long long number, char *base, int radix)
 {
-    if (number >= (unsigned long)base)
+    if (number >= (unsigned long)radix)
     {
-        ft_putnbr_base(number / (unsigned long long)base, base);
+        ft_putnbr_base(number / (unsigned long)radix, base, radix);
     }
-    if (number > (unsigned long)base && (number % base) >= (unsigned long)base)
+    if (number > (unsigned long)radix && (number % radix) >= (unsigned long)radix)
     {
-        ft_putchar(NUM[number % base - 1]);
+        ft_putchar(base[number % radix - 1]);
     }
     else
     {
-        ft_putchar(NUM[number % base]);
+        ft_putchar(base[number % radix]);
+    }
+}
+
+void        ft_putint_base(int  number, char *base, int radix)
+{
+    if (number >= radix)
+    {
+        ft_putnbr_base(number / radix, base, radix);
+    }
+    if (number > radix && (number % radix) >= radix)
+    {
+        ft_putchar(base[number % radix - 1]);
+    }
+    else
+    {
+        ft_putchar(base[number % radix]);
     }
 }

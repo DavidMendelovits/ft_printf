@@ -2,12 +2,13 @@
 
 void    dispatch(t_todo *list, t_content *content, int *i)
 {
-	WOW();
+//	WOW();
 	t_argument	arg;
 	i = 0;
 
 	list->data = &arg;
-	printf("list->spec: %c\n", list->spec);
+//	printf("list->spec: %c\n", list->spec);
+//	printf("list->length = %s\n", list->length);
     if (list->spec == 's' || list->spec == 'S')
         string(list, content);
     else if (list->spec == 'd' || list->spec == 'i')
@@ -18,14 +19,14 @@ void    dispatch(t_todo *list, t_content *content, int *i)
         percent(list, content, i);*/
     else if (list->spec == 'p')
         pointer(list, content);
-//    else if (list->spec == 'o' || list->spec == 'O')
-//        octal(list, content, i);
-//    else if (list->spec == 'X' || list->spec == 'X')
-//        hexadecimal(list, content, i);
+    else if (list->spec == 'o' || list->spec == 'O')
+        octal(list, content);
+    else if (list->spec == 'X' || list->spec == 'x')
+        hex(list, content);
    else if (list->spec == 'u')
         unsigned_int(list, content);
-/*    else if (list->spec == 'b')
-        binary(list, content, i);
-*/	
+    else if (list->spec == 'b')
+        binary(list, content);
+//	printf("end dispatch\n");	
 }
 

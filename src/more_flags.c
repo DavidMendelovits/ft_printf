@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:16:03 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 18:39:28 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/06 10:42:23 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 
 void	apply_width(t_todo *list, t_content *content, int *i)
 {
-	WOW();
+//	WOW();
 	int		tmp;
 	int		w_len;
 
 	tmp = *i;
 	w_len = 0;
-	while (!(flag_check(content->format[tmp]))
-		&& !(is_wildcard(content->format[tmp]))
+	while (!(is_wildcard(content->format[tmp]))
 		&& !(spec_check(content->format[tmp]))
 		&& !(content->format[tmp] == '.'))
 	{
 		if (w_len > 0)
 			list->width *= 10;
-		printf("format[%d] = %c\n", tmp, content->format[tmp]);
-		printf("width: %d\n", list->width);
+//		printf("format[%d] = %c\n", tmp, content->format[tmp]);
+//		printf("width: %d\n", list->width);
 		list->width += (content->format[tmp] - '0');
 		w_len++;
 		tmp += 1;
@@ -41,21 +40,21 @@ void	apply_width(t_todo *list, t_content *content, int *i)
 	{
 		*i += w_len - 1;
 	}
-	printf("list->width = %d\n", list->width);
-	printf("w_len = %d\n", w_len);
+//	printf("list->width = %d\n", list->width);
+//	printf("w_len = %d\n", w_len);
 
-	printf("*i = %d\n", *i);
+//	printf("*i = %d\n", *i);
 }
 
 int		ft_number_len(unsigned long n)
 {
-	WOW();
+//	WOW();
 	int		len;
 	
 	len = 1;
 	while (n)
 	{
-		printf("%lu\n", n);
+//		printf("%lu\n", n);
 		n /= 10;
 		if (n)
 		{
@@ -65,17 +64,34 @@ int		ft_number_len(unsigned long n)
 	return (len);
 }
 
+int		ft_number_len_base(unsigned long n, int radix)
+{
+//	WOW();
+	int		len;
+	
+	len = 1;
+	while (n)
+	{
+//		printf("%lu\n", n);
+		n /= radix;
+		if (n)
+		{
+			len += 1;
+		}
+	}
+	return (len);
+}
 void	get_wildcard(int *value, t_content *content, int *len)
 {
-	WOW();
+//	WOW();
 	*value = va_arg(*(content)->arg_list, int);
-	printf("wildcard = %d\n", *value);
+//	printf("wildcard = %d\n", *value);
 	*len += ft_number_len(*value);
 }
 
 void	apply_length(t_todo *list, t_content *content, int *i)
 {
-	WOW();
+//	WOW();
 	int		tmp;
 
 	tmp = *i;
@@ -101,7 +117,7 @@ void	apply_length(t_todo *list, t_content *content, int *i)
 
 int     validate_len(char c)
 {
-	WOW();
+//	WOW();
     if (c == 'l' || c == 'h' || c == 'z' || c == 'j')
         return (1);
     return (0);

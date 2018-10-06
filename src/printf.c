@@ -6,12 +6,11 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 23:01:21 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 17:15:41 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/06 09:47:09 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "print_pointer.c"
 
 int		ft_printf(const char *format, ...)
 {

@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:04:18 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 17:53:43 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/06 10:42:35 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int     apply_flags(t_todo *list, t_content *content, int *i)
 {
-	WOW();
+//	WOW();
     int     tmp;
 
     tmp = *i;
-    while (flag_check(content->format[tmp++]))
+    while (flag_check(content->format[tmp]))
     {
         if (content->format[tmp] == '#')
             list->alt_form = 1;
@@ -30,6 +30,7 @@ int     apply_flags(t_todo *list, t_content *content, int *i)
             list->left_align = 1;
         else if (content->format[tmp] == '+')
             list->show_sign = 1;
+		tmp += 1;
     }
     return (1);
 }
@@ -37,15 +38,15 @@ int     apply_flags(t_todo *list, t_content *content, int *i)
 
 int     flag_check(char c)
 {
-	WOW();
-    if (c == '#'|| c == '-' || c == '+'|| c == ' ' || c == 0)
+//	WOW();
+    if (c == '#'|| c == '-' || c == '+'|| c == ' ' || c == '0')
         return (1);
     return (0);
 }
 
 int     is_wildcard(char c)
 {
-	WOW();
+//	WOW();
     if (c == '*' )
         return (1);
     return (0);
@@ -54,7 +55,7 @@ int     is_wildcard(char c)
 
 void     apply_precision(t_todo *list, t_content *content, int *i)
 {
-	WOW();
+//	WOW();
 	int		tmp;
 	int		p_len;
 
@@ -68,8 +69,8 @@ void     apply_precision(t_todo *list, t_content *content, int *i)
 		if (p_len > 0)
 			list->precision *= 10;
 		list->precision	+= (content->format[tmp] - '0');
-		printf("format[%d] = %c\n", tmp, content->format[tmp]);
-		printf("precision: %d\n", list->precision);
+//		printf("format[%d] = %c\n", tmp, content->format[tmp]);
+//		printf("precision: %d\n", list->precision);
 		p_len++;
 	}
 	if (p_len == 0)
@@ -85,7 +86,7 @@ void     apply_precision(t_todo *list, t_content *content, int *i)
 
 int		spec_check(char c)
 {
-	WOW();
+//	WOW();
 	if (c == 'c' || c == 'C' || c == 's' || c == 'S' || c == 'p'
 	|| c == 'd' || c == 'D' || c == 'i' || c == 'u' || c == 'o'
 	|| c == 'O' || c == 'x' || c == 'X' || c == 'b')
