@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 22:48:32 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/05 17:24:55 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/05 18:42:03 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,19 @@ void	print_precision(t_todo *list, t_content *content);
 
 void	character(t_todo *list, t_content *content);
 
-int		ft_number_len(int n);
+int		ft_number_len(unsigned long n);
 
 void	decimal(t_todo *list, t_content *content);
+
+void	unsigned_int(t_todo *list, t_content *content);
+
+void	print_zero(t_todo *list, t_content *content);
+
+void	ft_putnbr_base(unsigned long long number, int base);
+
+void	pointer(t_todo *list, t_content *content);
 //format these for new parsing engine
+
 /*
 int     print_char(va_list arg_list);
 int		print_str(va_list arg_list);

@@ -32,11 +32,11 @@ int     main(void)
 	ft_printf("---------------->ft_printf: *.* \n%*.*s\n", 10, 4, strdup(hello));
     printf("printf: (int) \n%05i\n", n);
   	ft_printf("ft_printf: (int) %05i\n", n);
-    printf("printf: (int) \n%125.8i\n", n);
-  	ft_printf("ft_printf: (int) %125.8i\n", n);
-	//    printf("printf: (uint) %u\n", u_int);
-//    ft_printf("ft_printf: (uint) %u\n", u_int);
-//    printf("printf: (ptr) %p\n", ptr);
-//	ft_printf("ft_printf: (ptr) %p\n", ptr);
+    printf("printf: (int) \n%125.66i\n", n);
+  	ft_printf("ft_printf: (int) %125.66i\n", n);
+    printf("printf: (uint) \n%120.20u\n", u_int);
+    ft_printf("ft_printf: (uint) %120.20u\n", u_int);
+    printf("printf: (ptr) %p\n", ptr);
+	ft_printf("ft_printf: (ptr) %p\n", ptr);
     return (0);
 }
