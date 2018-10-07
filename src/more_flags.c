@@ -6,11 +6,12 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:16:03 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/07 14:11:16 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/07 15:31:43 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <assert.h>
 
 void	apply_width(t_todo *list, t_content *content, int *i)
 {
@@ -96,6 +97,7 @@ void	apply_length(t_todo *list, t_content *content, int *i)
 	int		tmp;
 
 	tmp = *i;
+//	printf("content[%d] = %c\n", tmp, content->format[tmp]);
 	if (content->format[tmp] == 'h' && content->format[tmp + 1] == 'h'
 	&& spec_check(content->format[tmp + 2]))
 		ft_strcpy(list->length, "hh\0");
@@ -112,10 +114,13 @@ void	apply_length(t_todo *list, t_content *content, int *i)
 	&& spec_check(content->format[tmp + 1]))
 		list->length[0] = 'j';
 	else if (content->format[tmp] == 'z'
-	&& spec_check(content->format[tmp]))
+	&& spec_check(content->format[tmp + 1]))
 		list->length[0] = 'z';
 	*i += ft_strlen(list->length) - 1;
+
 //	printf("list->length: %s\n", list->length);
+
+//	assert(list->length[0] != '\0');
 }
 
 int     validate_len(char c)

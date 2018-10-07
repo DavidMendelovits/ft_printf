@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 16:33:58 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/07 10:10:58 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/07 15:31:32 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ void	conversion(t_todo *list, t_content *content)
 	else if (list->length[0] == 'j')
 		list->data->num = va_arg(*content->arg_list, intmax_t);
 	else if (list->length[0] == 'z')
+	{
 		list->data->num = va_arg(*content->arg_list, size_t);
+	//	printf("\nz\n");
+	}
 }
