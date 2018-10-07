@@ -27,8 +27,6 @@ all: $(NAME)
 $(OBJ): %.o: %.c
 		gcc -c $(CFLAGS) $< -o $@
 
-		gcc -c $(CFLAGS) $< -o $@
-
 $(NAME):  $(OBJ)
 		@make -C libft/
 		@ar rcs $(NAME) $(OBJ) $(LIBOBJ) libft/libft.a
