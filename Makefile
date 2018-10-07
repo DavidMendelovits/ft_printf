@@ -29,7 +29,7 @@ $(OBJ): %.o: %.c
 
 $(NAME):  $(OBJ)
 		@make -C libft/
-		@ar rcs $(NAME) $(OBJ) $(LIBOBJ) libft/libft.a
+		@ar rcs $(NAME) $(OBJ) $(LIBOBJ) libft/*.o
 		@echo "Created libftprintf!!\n"
 
 clean:
