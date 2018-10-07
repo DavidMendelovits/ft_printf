@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:16:03 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/06 10:42:23 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/07 14:11:16 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	apply_width(t_todo *list, t_content *content, int *i)
 
 	tmp = *i;
 	w_len = 0;
+	list->width = 0;
 	while (!(is_wildcard(content->format[tmp]))
 		&& !(spec_check(content->format[tmp]))
 		&& !(content->format[tmp] == '.'))
@@ -113,6 +114,8 @@ void	apply_length(t_todo *list, t_content *content, int *i)
 	else if (content->format[tmp] == 'z'
 	&& spec_check(content->format[tmp]))
 		list->length[0] = 'z';
+	*i += ft_strlen(list->length) - 1;
+//	printf("list->length: %s\n", list->length);
 }
 
 int     validate_len(char c)

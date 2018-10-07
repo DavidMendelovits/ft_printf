@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 16:34:07 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/06 10:45:43 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/07 14:20:18 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ void	print_string(t_todo *list, t_content *content)
 {
 //	WOW();
 	list->data->str = va_arg(*content->arg_list, char*);
+	if (!list->data->str)
+	{
+		write(1, "(null)", 6);
+		return ;
+	}
 //	printf("str: %s\n", list->data->str);
 	list->len = ft_strlen(list->data->str);
 	if (list->left_align)
@@ -108,6 +113,12 @@ void	print_width(t_todo *list, t_content *content)
 //	printf("list->width = %d\n", list->width);
 //	printf("list->precision = %d\n", list->precision);
 //	printf("padding: %d\n", pad);
+	if (list->precision > 0 && list->width > 0)
+		pad_char = ' ';
+	if (list->data->num < 0 || list->show_sign)
+	{
+		pad -= 1;
+	}
 	while (pad > 0)
 	{
 		write(content->fd, &pad_char, 1);

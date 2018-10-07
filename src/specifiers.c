@@ -15,8 +15,8 @@ void    dispatch(t_todo *list, t_content *content, int *i)
         decimal(list, content);
     else if (list->spec == 'c' || list->spec == 'C')
         character(list, content);
-/*    else if (list->spec == '%')
-        percent(list, content, i);*/
+    else if (list->spec == '%')
+        percent(list, content);
     else if (list->spec == 'p')
         pointer(list, content);
     else if (list->spec == 'o' || list->spec == 'O')

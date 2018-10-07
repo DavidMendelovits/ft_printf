@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:04:18 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/06 10:42:35 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/07 14:12:56 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ int     apply_flags(t_todo *list, t_content *content, int *i)
     while (flag_check(content->format[tmp]))
     {
         if (content->format[tmp] == '#')
+		{
             list->alt_form = 1;
-        else if (content->format[tmp] == ' ')
+//			printf("alt_form\n");
+		}
+		else if (content->format[tmp] == ' ')
             list->prepend_space = 1;
-        else if (content->format[tmp] == '0')
+        else if (content->format[tmp] == '0' && !list->left_align)
             list->prepend_zero = 1;
         else if (content->format[tmp] == '-')
             list->left_align = 1;
@@ -32,6 +35,7 @@ int     apply_flags(t_todo *list, t_content *content, int *i)
             list->show_sign = 1;
 		tmp += 1;
     }
+	*i = tmp - 1;
     return (1);
 }
 
@@ -59,10 +63,11 @@ void     apply_precision(t_todo *list, t_content *content, int *i)
 	int		tmp;
 	int		p_len;
 
-	tmp = *i;
+	tmp = *i + 1;
+//	printf("format[%d] = %c\n", tmp, content->format[tmp]);
 	p_len = 0;
 	list->precision = 0;
-	while ((content->format[++tmp] != '.')
+	while ((content->format[tmp] != '.')
 		&& !(is_wildcard(content->format[tmp]))
 		&& !(spec_check(content->format[tmp])))
 	{
@@ -72,8 +77,10 @@ void     apply_precision(t_todo *list, t_content *content, int *i)
 //		printf("format[%d] = %c\n", tmp, content->format[tmp]);
 //		printf("precision: %d\n", list->precision);
 		p_len++;
+		tmp += 1;
 	}
-	if (p_len == 0)
+//	printf("p_len: %d\n", p_len);
+	if (p_len == 0 && content->format[tmp] == '*')
 	{
 		get_wildcard(&list->precision, content, &p_len);
 		*i += 1;
@@ -89,7 +96,7 @@ int		spec_check(char c)
 //	WOW();
 	if (c == 'c' || c == 'C' || c == 's' || c == 'S' || c == 'p'
 	|| c == 'd' || c == 'D' || c == 'i' || c == 'u' || c == 'o'
-	|| c == 'O' || c == 'x' || c == 'X' || c == 'b')
+	|| c == 'O' || c == 'x' || c == 'X' || c == 'b' || c == '%')
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 22:48:32 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/06 11:01:54 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/07 10:22:02 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,10 @@ int		ft_number_len_base(unsigned long n, int radix);
 void	print_wide_string(t_todo *list, t_content *content);
 
 char	*wstring_dup(t_content *content);
+
+void	prepend_sign(t_todo *list, t_content *content);
+
+void	percent(t_todo *list, t_content *content);
 //format these for new parsing engine
 
 /*

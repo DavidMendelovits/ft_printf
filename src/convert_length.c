@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 16:33:58 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/06 10:42:41 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/07 10:10:58 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,15 @@ void	conversion(t_todo *list, t_content *content)
 {
 //	WOW();
 	if (list->length[0] == '\0')
+	{
 		list->data->num = va_arg(*content->arg_list, int);
+//		printf("none\n");
+	}
 	else if (list->length[0] == 'h' && list->length[1] == 'h')
-		list->data->num = (char)va_arg(*content->arg_list, int);
+	{
+//		printf("hh\n");
+		list->data->num = (signed char)va_arg(*content->arg_list, int);
+	}
 	else if (list->length[0] == 'h')
 		list->data->num = (short)va_arg(*content->arg_list, int);
 	else if (list->length[0] == 'l' && list->length[1] == 'l')
