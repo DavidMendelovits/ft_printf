@@ -40,8 +40,12 @@ void    dispatch(t_todo *list, t_content *content, int *i)
 		ft_strcpy(list->length, "l");
 		unsigned_int(list, content);
 	}
-    else if (list->spec == 'b')
+    else if (list->spec == 'b')	
         binary(list, content);
+	else if (list->spec == '%')
+	{
+		percent(list, content);
+	}
 //	printf("end dispatch\n");	
 }
 

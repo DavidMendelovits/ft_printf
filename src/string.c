@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 16:34:07 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/07 14:20:18 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/08 10:20:50 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,21 @@ void	print_precision(t_todo *list, t_content *content)
 		_precision = list->len;
 	write(content->fd, list->data->str, _precision);
 	content->r_val += _precision;
+}
+
+void	percent(t_todo *list, t_content *content)
+{
+	list->len = 1;
+	if (list->left_align)
+	{
+		if (list->precision)
+			write(1, "%", 1);
+		print_width(list, content);
+	}
+	else
+	{
+		print_width(list, content);
+		if (list->precision)
+			write(1, "%", 1);
+	}
 }
