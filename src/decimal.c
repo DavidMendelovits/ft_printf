@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 17:19:24 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/07 16:39:37 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/08 10:10:31 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,7 @@ void		print_zero(t_todo *list, t_content *content)
 
 void		prepend_sign(t_todo *list, t_content *content)
 {
-	if (list->data->num < 0)
-	{
-		write(1, "-", 1);
-	}
-	else if (list->prepend_space && list->data->num > 0)
+	if (list->prepend_space && list->data->num >= 0)
 	{
 		write(1, " ", 1);
 	}
@@ -42,6 +38,7 @@ void		prepend_sign(t_todo *list, t_content *content)
 //	{
 //		write(1, "+", 1);
 //	}
+	list->len += 1;
 	content->r_val += 1;
 //	list->len += 1;
 }
@@ -73,7 +70,7 @@ void		decimal(t_todo *list, t_content *content)
 		{
 			write(1, " ", 1);
 		}
-		if (list->data->num && list->precision > 0)
+		if (list->data->num && list->precision)
 			ft_putnbr_base(list->data->num, "0123456789", 10);
 		else if (list->precision > 0)
 			return ;
@@ -86,12 +83,15 @@ void		decimal(t_todo *list, t_content *content)
 			if (list->data->num > 0)
 				write(1, "+", 1);
 		}
-		print_width(list, content);
-		if ((list->prepend_space && list->data->num > 0) || list->data->num < 0)
+		else if (list->prepend_space && list->data->num >= 0)
 			prepend_sign(list, content);
-		print_zero(list, content);
+		print_width(list, content);
 		if (list->data->num < 0)
+		{
 			list->data->num *= -1;
+			write(1, "-", 1);
+		}
+		print_zero(list, content);
 		if (list->data->num)
 			ft_putnbr_base(list->data->num, "0123456789", 10);
 		else if (list->precision)
@@ -145,7 +145,7 @@ void		octal(t_todo *list, t_content *content)
 //	printf("octal: %jo\n", list->data->num);
 	if (list->left_align)
 	{
-		if (list->alt_form)
+		if (list->alt_form && list->data->u_num)
 		{
 			write(1, "0", 1);
 		}
@@ -164,6 +164,10 @@ void		octal(t_todo *list, t_content *content)
 			print_zero(list, content);
 		if (list->data->u_num || list->precision)
 			ft_putnbr_base(list->data->u_num, "01234567", 8);
+		else if (list->data->u_num == 0 && list->precision == 0 && list->alt_form)
+		{
+			write(1, "0", 1);
+		}
 //		else if (!list->precision)
 //			write(1, "0", 1);
 //		else if (list->alt_form)
@@ -212,8 +216,8 @@ void		hex(t_todo *list, t_content *content)
 		ft_strcpy(prefix, "0x");
 	else
 		ft_bzero(prefix, 3);
-//	if (list->alt_form)
-//		list->len += 2;
+	if (list->alt_form && list->data->u_num)
+		list->len += 2;
 	if (list->left_align)
 	{
 		write(1, prefix, 2);
@@ -222,10 +226,13 @@ void		hex(t_todo *list, t_content *content)
 	}
 	else
 	{
+		print_width(list, content);
 		if (list->data->u_num)
 			write(1, prefix, 2);
-		print_width(list, content);
-		print_zero(list, content);
+		if (list->alt_form)
+			list->len -= 2;
+		if (list->precision > 0)
+			print_zero(list, content);
 		if (list->data->u_num || list->precision)
 		{
 			ft_putnbr_base(list->data->num, base, 16);

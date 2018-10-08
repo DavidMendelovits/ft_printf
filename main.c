@@ -160,10 +160,12 @@ void	moulinette(void)
 	ft_printf("|#.x, #.0x| %#.x, %#.0x\n", 0, 0);
 	printf("|#.x, #.0x| %#.x, %#.0x\n", 0, 0);
 	//printf("%#.x, %#.0x\n", 0, 0);
-	ft_printf("%#o\n", 0);
-	printf("%#o\n", 0);
-	ft_printf("%#.o\n", 0);
-	printf("%#.o\n", 0);
+	ft_printf("|%#o\n", 0);
+	printf("|%#o\n", 0);
+	ft_printf("|%#.o\n", 0);
+	printf("|%#.o\n", 0);
+	ft_printf("%#.x\n", 0);
+	printf("%#.x\n", 0);
 	ft_printf("%hhu, %hhu\n", 0, UCHAR_MAX + 42);
 	printf("%hhu, %hhu\n", 0, UCHAR_MAX + 42);
 	ft_printf("%.*s\n", -1, NULL);
@@ -231,8 +233,10 @@ void	moulinette(void)
 	printf("%#.o\n", 0);
 	ft_printf("%hhu, %hhu\n", 0, UCHAR_MAX + 42);
 	printf("%hhu, %hhu\n", 0, UCHAR_MAX + 42);
+	ft_printf("%hhu, %hhu\n", 0, UCHAR_MAX + 42);
 	printf("%.*s\n", -1, NULL);
 	ft_printf("%.*s\n", -1, "asd");
+	printf("%.*s\n", -1, "asd");
 	ft_printf("%hhD, %hhD\n", 0, USHRT_MAX);
 	printf("%hhD, %hhD\n", 0, USHRT_MAX);
 	ft_printf("%#O\n", 1);
@@ -265,7 +269,7 @@ void	moulinette(void)
 //	printf("errno = %d: %s\n", localerr, strerror(localerr));
 
 }
-/*
+
 void widechar(void)
 {
 	wchar_t		c;
@@ -273,10 +277,11 @@ void widechar(void)
 	setlocale(LC_ALL, "en_US.UTF-8");
 	printf("WIDECHAR\n ============================ \n");
 	c = L'诶';
-//	ft_printf("%lc\n", c);
-//	ft_printf("%S\n", L"Á±≥");
+	ft_printf("%C\n", c);
+	printf("%lc\n", c);
+	ft_printf("%S\n", L"Á±≥");
 	printf("%S\n", L"Á±≥");
-//	ft_printf("%S\n", L"ابتثجحخدذرزسشصضطظعغفقكلمنهوي");
+	ft_printf("%S\n", L"ابتثجحخدذرزسشصضطظعغفقكلمنهوي");
 	printf("%ls\n", L"ابتثجحخدذرزسشصضطظعغفقكلمنهوي");
 	printf("Errno: %d. Msg: %s\n", errno, strerror(errno));
 	if (1 == 2) // have no idea
@@ -290,13 +295,13 @@ void stringprec(void)
 {
 //	ft_printf("%.4s", "42 is the answer");
 }
-*/
+
 int		main(void)
 {
 	basic();
 	ftchecker();
 	moulinette();
-//	widechar();
+	widechar();
 //	stringprec();
 	return (0);
 }
