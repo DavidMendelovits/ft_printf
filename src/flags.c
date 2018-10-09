@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:04:18 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/08 10:11:11 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/08 17:15:06 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,17 @@ int     apply_flags(t_todo *list, t_content *content, int *i)
             list->alt_form = 1;
 //			printf("alt_form\n");
 		}
-		else if (content->format[tmp] == ' ')
+		else if (content->format[tmp] == ' ' && !list->show_sign)
             list->prepend_space = 1;
         else if (content->format[tmp] == '0' && !list->left_align)
             list->prepend_zero = 1;
         else if (content->format[tmp] == '-')
             list->left_align = 1;
         else if (content->format[tmp] == '+')
+		{
             list->show_sign = 1;
+			list->prepend_space = 0;
+		}
 		tmp += 1;
     }
 	*i = tmp - 1;
@@ -89,6 +92,8 @@ void     apply_precision(t_todo *list, t_content *content, int *i)
 	{
 		*i += p_len;
 	}
+	if (list->precision > 0 && list->prepend_zero)
+		list->prepend_zero = 0;
 }
 
 int		spec_check(char c)

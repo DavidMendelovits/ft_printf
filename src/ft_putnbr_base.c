@@ -1,4 +1,5 @@
 #include "libft.h"
+#include <stdio.h>
 
 void        ft_putnbr_base(unsigned long long number, char *base, int radix)
 {

@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 22:48:32 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/07 10:22:02 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/08 13:00:32 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,17 @@ void	character(t_todo *list, t_content *content);
 int		ft_number_len(unsigned long n);
 
 void	decimal(t_todo *list, t_content *content);
-
+void	print_number(t_todo *list, t_content *content, char *base);
+int		get_number_len(const intmax_t number);
 void	unsigned_int(t_todo *list, t_content *content);
 void	conversion(t_todo *list, t_content *content);
 void	unsigned_conversion(t_todo *list, t_content *content);
 
 void	print_zero(t_todo *list, t_content *content);
+
+void	unsigned_number(t_todo *list, t_content *content, char *base);
+void	print_unsigned(t_todo *l, t_content *c, char *base, int radix);
+void	get_prefix(char *prefix, t_todo *list);
 
 void	ft_putnbr_base(unsigned long long number, char *base, int radix);
 void	ft_putint_base(int number, char *base, int radix);

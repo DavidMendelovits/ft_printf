@@ -14,6 +14,8 @@ SRC_FILES = string.c \
 			decimal.c \
 			ft_putnbr_base.c \
 			hex.c \
+			decimal2.c \
+			unsigned.c 
 
 .PHONY = all clean fclean clean re
 

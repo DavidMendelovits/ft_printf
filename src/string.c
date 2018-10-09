@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 16:34:07 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/08 10:20:50 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/08 18:41:24 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,17 @@ void	character(t_todo *list, t_content *content)
 {
 //	WOW();
 	list->data->character = va_arg(*content->arg_list, int);
-	write(1, &list->data->character, 1);
+	list->len = 1;
+	if (list->left_align)
+	{
+		write(1, &list->data->character, 1);
+		print_width(list, content);
+	}
+	else
+	{
+		print_width(list, content);
+		write(1, &list->data->character, 1);
+	}
 	content->r_val += 1;
 }
 
@@ -71,6 +81,7 @@ void	print_string(t_todo *list, t_content *content)
 	if (!list->data->str)
 	{
 		write(1, "(null)", 6);
+		content->r_val += 6;
 		return ;
 	}
 //	printf("str: %s\n", list->data->str);
@@ -100,19 +111,25 @@ void	print_width(t_todo *list, t_content *content)
 	int		pad;
 	char	pad_char;
 
-//	printf("list->prepend_zero = %d\n", list->prepend_zero);
 	if (list->prepend_zero)
 		pad_char = '0';
 	else
 		pad_char = ' ';
-	if (list->precision >= 0)
+	if (list->precision >= 0 && (list->spec == 's' || list->spec == 'S') && ft_strlen(list->data->str) == 0)
+		pad = list->width - list->len;
+	else if (list->precision > 0 && (list->spec == 's' || list->spec == 'S') &&
+			list->len > list->precision)
+		pad = list->width - list->precision;
+	else if (list->precision > 0 && list->precision > list->len)
+		pad = list->width - list->precision;
+	else if (list->precision == 0 && list->data->u_num == 0)
 		pad = list->width - list->precision;
 	else
 		pad = list->width - list->len;
-//	printf("list->len = %d\n", list->len);
-//	printf("list->width = %d\n", list->width);
-//	printf("list->precision = %d\n", list->precision);
-//	printf("padding: %d\n", pad);
+	if (list->alt_form && (list->spec == 'x' || list->spec == 'X'))
+		pad -= 2;
+	else if (list->alt_form && (list->spec == 'o' || list->spec == 'O'))
+		pad -= 1;
 	if (list->precision > 0 && list->width > 0)
 		pad_char = ' ';
 	if (list->data->num < 0 || list->show_sign)
@@ -145,14 +162,13 @@ void	percent(t_todo *list, t_content *content)
 	list->len = 1;
 	if (list->left_align)
 	{
-		if (list->precision)
-			write(1, "%", 1);
+		write(1, "%", 1);
 		print_width(list, content);
 	}
 	else
 	{
 		print_width(list, content);
-		if (list->precision)
-			write(1, "%", 1);
+		write(1, "%", 1);
 	}
+	content->r_val += 1;
 }

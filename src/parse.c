@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/27 10:46:37 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/07 16:26:58 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/08 10:58:18 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int     begin_parse(const char *format, va_list arg_list)
 		}
 		else
 		{
-			ft_putchar_fd(format[i], content.fd);
+			ft_putchar(format[i]);
 			content.r_val++;
 		}
 	}

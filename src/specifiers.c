@@ -23,25 +23,33 @@ void    dispatch(t_todo *list, t_content *content, int *i)
     else if (list->spec == '%')
         percent(list, content);
     else if (list->spec == 'p')
-        pointer(list, content);
-    else if (list->spec == 'o')
-        octal(list, content);
+	{
+		list->alt_form = 1;
+        unsigned_number(list, content, "0123456789abcdef");
+	}
+	else if (list->spec == 'o')
+        unsigned_number(list, content, "01234567");
 	else if (list->spec == 'O')
 	{
 		ft_strcpy(list->length, "l");
-		octal(list, content);
+		unsigned_number(list, content, "01234567");
 	}
     else if (list->spec == 'X' || list->spec == 'x')
-        hex(list, content);
-   else if (list->spec == 'u')
-        unsigned_int(list, content);
+	{
+		if (list->spec == 'x')
+			unsigned_number(list, content, "0123456789abcdef");
+		else if (list->spec == 'X')
+			unsigned_number(list, content, "0123456789ABCDEF");
+	}
+	else if (list->spec == 'u')
+        unsigned_number(list, content, "0123456789");
 	else if (list->spec == 'U')
 	{
 		ft_strcpy(list->length, "l");
-		unsigned_int(list, content);
+		unsigned_number(list, content, "0123456789");
 	}
     else if (list->spec == 'b')	
-        binary(list, content);
+        unsigned_number(list, content, "01");
 	else if (list->spec == '%')
 	{
 		percent(list, content);

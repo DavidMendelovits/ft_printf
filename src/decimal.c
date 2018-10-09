@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 17:19:24 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/08 10:10:31 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/08 18:38:18 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,18 @@ void		print_zero(t_todo *list, t_content *content)
 
 	_z = '0';
 	zero = list->precision - list->len;
-//	printf("precision (%d) - len(%d)\n", list->precision, list->len);
+	if (list->alt_form && (list->spec == 'x' || list->spec == 'X'))
+	{
+//		zero += 2;
+	//	list->width -= 2;
+	}
+	if (list->alt_form && (list->spec == 'x' || list->spec == 'X') && list->prepend_zero)
+	{
+		list->width -= 2;
+	}
+	if (list->alt_form && (list->spec == 'o' || list->spec == 'O'))
+		zero -= 1;
+	printf("precision (%d) - len(%d)\n", list->precision, list->len);
 	while (zero > 0)
 	{
 		write(1, &_z, 1);
@@ -27,7 +38,7 @@ void		print_zero(t_todo *list, t_content *content)
 		content->r_val += 1;
 	}
 }
-
+/*
 void		prepend_sign(t_todo *list, t_content *content)
 {
 	if (list->prepend_space && list->data->num >= 0)
@@ -42,7 +53,8 @@ void		prepend_sign(t_todo *list, t_content *content)
 	content->r_val += 1;
 //	list->len += 1;
 }
-
+*/
+/*
 void		decimal(t_todo *list, t_content *content)
 {
 //	WOW();
@@ -97,8 +109,10 @@ void		decimal(t_todo *list, t_content *content)
 		else if (list->precision)
 			write(1, "0", 1);
 	}
+	content->r_val += list->len;
 }
-
+*/
+/*
 void		percent(t_todo *list, t_content *content)
 {
 	list->len = 1;
@@ -113,7 +127,7 @@ void		percent(t_todo *list, t_content *content)
 		write(1, "%", 1);
 	}
 }
-
+*/
 void		unsigned_int(t_todo *list, t_content *content)
 {
 //	WOW();
@@ -133,6 +147,7 @@ void		unsigned_int(t_todo *list, t_content *content)
 		print_zero(list, content);
 		ft_putnbr_base(list->data->u_num, "0123456789", 10);
 	}
+	content->r_val += list->len;
 }
 
 void		octal(t_todo *list, t_content *content)
@@ -173,6 +188,7 @@ void		octal(t_todo *list, t_content *content)
 //		else if (list->alt_form)
 //			write(1, "0", 1);
 	}
+	content->r_val += list->len;
 }
 
 void		binary(t_todo *list, t_content *content)
@@ -190,6 +206,7 @@ void		binary(t_todo *list, t_content *content)
 		print_width(list, content);
 		ft_putnbr_base(list->data->num, "01", 2);
 	}
+	content->r_val += list->len;
 }
 
 void		hex(t_todo *list, t_content *content)
@@ -214,21 +231,24 @@ void		hex(t_todo *list, t_content *content)
 		ft_strcpy(prefix, "0X");
 	else if (list->alt_form && list->spec == 'x' && list->data->u_num)
 		ft_strcpy(prefix, "0x");
+	if (list->alt_form && list->data->u_num)
+		content->r_val += 2;
 	else
 		ft_bzero(prefix, 3);
 	if (list->alt_form && list->data->u_num)
 		list->len += 2;
 	if (list->left_align)
 	{
-		write(1, prefix, 2);
+		if (list->data->u_num)
+			ft_putstr(prefix);
 		ft_putnbr_base(list->data->num, base, 16);
 		print_width(list, content);
 	}
 	else
 	{
-		print_width(list, content);
 		if (list->data->u_num)
-			write(1, prefix, 2);
+			ft_putstr(prefix);
+		print_width(list, content);
 		if (list->alt_form)
 			list->len -= 2;
 		if (list->precision > 0)
@@ -238,4 +258,5 @@ void		hex(t_todo *list, t_content *content)
 			ft_putnbr_base(list->data->num, base, 16);
 		}
 	}
+	content->r_val += list->len;
 }

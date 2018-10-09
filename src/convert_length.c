@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 16:33:58 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/07 15:31:32 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/08 10:46:11 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	unsigned_conversion(t_todo *list, t_content *content)
 {
 //	WOW();
+	list->data->u_num = 0;
 	if (list->length[0] == '\0')
 		list->data->u_num = va_arg(*content->arg_list, unsigned int);
 	else if (list->length[0] == 'h' && list->length[1] == 'h')
@@ -40,6 +41,7 @@ void	unsigned_conversion(t_todo *list, t_content *content)
 void	conversion(t_todo *list, t_content *content)
 {
 //	WOW();
+	list->data->num = 0;
 	if (list->length[0] == '\0')
 	{
 		list->data->num = va_arg(*content->arg_list, int);
