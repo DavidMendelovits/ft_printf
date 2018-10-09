@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 16:34:07 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/08 18:41:24 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/09 07:45:35 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,11 @@ void	print_width(t_todo *list, t_content *content)
 	else if (list->precision > 0 && (list->spec == 's' || list->spec == 'S') &&
 			list->len > list->precision)
 		pad = list->width - list->precision;
+	else if (list->precision > 0 && list->precision >= list->len && (list->spec == 'd' || list->spec == 'i'))
+	{
+		pad = list->width - list->precision;
+	//	printf("pad = %d\n", pad);
+	}
 	else if (list->precision > 0 && list->precision > list->len)
 		pad = list->width - list->precision;
 	else if (list->precision == 0 && list->data->u_num == 0)

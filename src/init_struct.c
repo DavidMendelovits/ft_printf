@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 09:04:08 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/06 09:45:05 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/09 07:55:09 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void    init_list(t_todo *list, t_content *content)
     list->alt_form = 0;
     list->prepend_space = 0;
     list->prepend_zero = 0;
+	list->appended_sign = 0;
     list->show_sign = 0;
     list->length[0] = '\0';
     list->length[1] = '\0';

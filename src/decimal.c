@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 17:19:24 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/10/08 18:38:18 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/10/09 07:13:29 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void		print_zero(t_todo *list, t_content *content)
 	}
 	if (list->alt_form && (list->spec == 'o' || list->spec == 'O'))
 		zero -= 1;
-	printf("precision (%d) - len(%d)\n", list->precision, list->len);
 	while (zero > 0)
 	{
 		write(1, &_z, 1);
